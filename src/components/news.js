@@ -6,8 +6,14 @@ export default class News extends Component {
     return (
       <div>
       <p>News Component
-      <NewsItem/>
       </p>
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
+      <NewsItem title="title" description="description" />
       </div>
     )
   }
