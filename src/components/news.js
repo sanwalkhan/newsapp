@@ -108,7 +108,6 @@ export default class News extends Component {
     constructor(){
         super()
         
-        console.log("Constructor function")
         this.state = {
             articles : this.articles,
             loading : false
@@ -117,19 +116,17 @@ export default class News extends Component {
   render() {
     return (
       <div className="container m-y3">
-        <p>News-World HeadLines</p>
+        <h2>News-World HeadLines</h2>
+       
         <div className="row">
-          <div className="col-md-4">
-            <NewsItem title="title" description="description" imgURL="https://ichef.bbci.co.uk/news/1024/branded_news/16056/production/_128489109_f20311f5cdbed95ff96d937583581225905ed8ff0_0_5535_36901000x667.jpg" />
+        {this.state.articles.map((e)=>{
+            return(
+                <div className="col-md-4" key={e.url}>
+            <NewsItem newsURL={e.url} title={e.title.slice(0,60)} description={e.description.slice(0,90)} imgURL={e.urlToImage} />
           </div>
-
-          <div className="col-md-4">
-            <NewsItem title="title" description="description" />
-          </div>
-
-          <div className="col-md-4">
-            <NewsItem title="title" description="description" />
-          </div>
+            )
+        })}
+          
         </div>
       </div>
     );
