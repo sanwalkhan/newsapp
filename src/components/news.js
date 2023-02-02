@@ -26,7 +26,7 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
-    let URL = `https://newsapi.org/v2/top-everything?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
+    let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(URL);
     let parsedData = await data.json();
@@ -44,7 +44,7 @@ export default class News extends Component {
       Math.ceil(this.state.totalResults / this.props.pageSize)
     ) {
     } else {
-      let URL = `https://newsapi.org/v2/top-everything?country=${
+      let URL = `https://newsapi.org/v2/top-headlines?country=${
         this.props.country
       }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
         this.state.page + 1
@@ -63,7 +63,7 @@ export default class News extends Component {
   };
 
   handlePreviousClick = async () => {
-    let URL = `https://newsapi.org/v2/top-everything?country=${
+    let URL = `https://newsapi.org/v2/top-headlines?country=${
       this.props.country
     }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
       this.state.page - 1
@@ -88,7 +88,7 @@ export default class News extends Component {
           }`}
           style={{margin:'40px 0px'}}
         >
-          News-World everything
+          News-World headlines
         </h2>
         {this.state.loading && <Spinner />}
 
@@ -99,10 +99,10 @@ export default class News extends Component {
                 <div className="col-md-4" key={e.url}>
                   <NewsItem
                     newsURL={e.url}
-                    title={e ? e.title.slice(0, 60) : "News-World"}
+                    title={e ? e.title : "News-World"}
                     description={
                       e
-                        ? e.description.slice(0, 90)
+                        ? e.description
                         : "Hello World This is Sanwal Khan. A Beginner MernStack Developer. I'm From Pakistan . Thanks "
                     }
                     imgURL={e.urlToImage}
