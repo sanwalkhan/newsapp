@@ -1,11 +1,13 @@
 // import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import News from './news';
 
 export default class Navbar extends Component {
    state={
     mode : "dark"
    }
   render() {
+    <News data={this.state}/>
     const toggleMode = () => {
         if (this.state.mode === "light") {
           this.setState({mode : "dark"});
