@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
+import PropTypes from "prop-types";
 
 export default class News extends Component {
+  static defaultProps = {
+    country: "pakistan",
+    pageSize: 9,
+  };
+
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
+
   constructor() {
     super();
 
@@ -13,8 +25,8 @@ export default class News extends Component {
     };
   }
 
-  async componentDidMount() { 
-    let URL = `https://newsapi.org/v2/everything?q=${this.props.country}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
+  async componentDidMount() {
+    let URL = `https://newsapi.org/v2/top-everything?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(URL);
     let parsedData = await data.json();
@@ -32,7 +44,9 @@ export default class News extends Component {
       Math.ceil(this.state.totalResults / this.props.pageSize)
     ) {
     } else {
-      let URL = `https://newsapi.org/v2/everything?q=${this.props.country}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
+      let URL = `https://newsapi.org/v2/top-everything?country=${
+        this.props.country
+      }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
         this.state.page + 1
       }&pageSize=${this.props.pageSize} `;
       this.setState({ loading: true });
@@ -49,7 +63,9 @@ export default class News extends Component {
   };
 
   handlePreviousClick = async () => {
-    let URL = `https://newsapi.org/v2/everything?q=${this.props.country}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
+    let URL = `https://newsapi.org/v2/top-everything?country=${
+      this.props.country
+    }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
       this.state.page - 1
     }&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -70,28 +86,30 @@ export default class News extends Component {
           className={`text-center text-${
             this.props.data === "dark" ? "white" : "dark"
           }`}
+          style={{margin:'40px 0px'}}
         >
-          News-World HeadLines
+          News-World everything
         </h2>
         {this.state.loading && <Spinner />}
 
         <div className="row">
-          {!this.state.loading && this.state.articles.map((e) => {
-            return (
-              <div className="col-md-4" key={e.url}>
-                <NewsItem
-                  newsURL={e.url}
-                  title={e ? e.title.slice(0, 60) : "News-World"}
-                  description={
-                    e
-                      ? e.description.slice(0, 90)
-                      : "Hello World This is Sanwal Khan. A Beginner MernStack Developer. I'm From Pakistan . Thanks "
-                  }
-                  imgURL={e.urlToImage}
-                />
-              </div>
-            );
-          })}
+          {!this.state.loading &&
+            this.state.articles.map((e) => {
+              return (
+                <div className="col-md-4" key={e.url}>
+                  <NewsItem
+                    newsURL={e.url}
+                    title={e ? e.title.slice(0, 60) : "News-World"}
+                    description={
+                      e
+                        ? e.description.slice(0, 90)
+                        : "Hello World This is Sanwal Khan. A Beginner MernStack Developer. I'm From Pakistan . Thanks "
+                    }
+                    imgURL={e.urlToImage}
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="container d-flex justify-content-between">
           <button
