@@ -4,11 +4,12 @@ import Navbar from "./components/Navbar";
 import News from "./components/news";
 
 export default class App extends Component {
-  // a = "Sanwal"
+ 
   render() {
+    let  {mode} = this.props
     return (
       <div>
-      <Navbar/>
+      <Navbar mode={mode}/>
       <News/>
       </div>
     )
