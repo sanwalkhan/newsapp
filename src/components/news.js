@@ -46,9 +46,10 @@ export default class News extends Component {
     } else {
       let URL = `https://newsapi.org/v2/top-headlines?country=${
         this.props.country
-      }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
-        this.state.page + 1
-      }&pageSize=${this.props.pageSize} `;
+      }&category=${
+        this.props.category
+      }&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${this.state.page +
+        1}&pageSize=${this.props.pageSize} `;
       this.setState({ loading: true });
 
       let data = await fetch(URL);
@@ -65,9 +66,10 @@ export default class News extends Component {
   handlePreviousClick = async () => {
     let URL = `https://newsapi.org/v2/top-headlines?country=${
       this.props.country
-    }&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${
-      this.state.page - 1
-    }&pageSize=${this.props.pageSize}`;
+    }&category=${
+      this.props.category
+    }&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${this.state.page -
+      1}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(URL);
     let parsedData = await data.json();
@@ -86,12 +88,11 @@ export default class News extends Component {
           className={`text-center text-${
             this.props.data === "dark" ? "white" : "dark"
           }`}
-          style={{margin:'40px 0px'}}
+          style={{ margin: "40px 0px" }}
         >
           News-World headlines
         </h2>
         {this.state.loading && <Spinner />}
-
         <div className="row">
           {!this.state.loading &&
             this.state.articles.map((e) => {
