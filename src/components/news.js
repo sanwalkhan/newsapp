@@ -25,8 +25,8 @@ export default class News extends Component {
     };
   }
 
-  async componentDidMount() {
-    let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
+  async updateNews() {
+    let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(URL);
     let parsedData = await data.json();
@@ -38,47 +38,18 @@ export default class News extends Component {
     });
   }
 
-  handleNextClick = async () => {
-    if (
-      this.state.page + 1 >
-      Math.ceil(this.state.totalResults / this.props.pageSize)
-    ) {
-    } else {
-      let URL = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${this.state.page +
-        1}&pageSize=${this.props.pageSize} `;
-      this.setState({ loading: true });
+  async componentDidMount() {
+    this.updateNews();
+  }
 
-      let data = await fetch(URL);
-      let parsedData = await data.json();
-      console.log(parsedData);
-      this.setState({
-        page: this.state.page + 1,
-        articles: parsedData.articles,
-        loading: false,
-      });
-    }
+  handleNextClick = async () => {
+    this.setState({ page: this.state.page + 1 });
+    this.updateNews();
   };
 
   handlePreviousClick = async () => {
-    let URL = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${this.state.page -
-      1}&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
-    let data = await fetch(URL);
-    let parsedData = await data.json();
-    this.setState({ loading: false });
-
-    this.setState({
-      page: this.state.page - 1,
-      articles: parsedData.articles,
-    });
+    this.setState({ page: this.state.page - 1 });
+    this.updateNews();
   };
 
   render(props) {
@@ -107,6 +78,9 @@ export default class News extends Component {
                         : "Hello World This is Sanwal Khan. A Beginner MernStack Developer. I'm From Pakistan . Thanks "
                     }
                     imgURL={e.urlToImage}
+                    author={e.author}
+                    date={e.publishedAt}
+                    source={e.source.name}
                   />
                 </div>
               );
