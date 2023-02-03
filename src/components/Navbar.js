@@ -32,27 +32,13 @@ export default class Navbar extends Component {
         <li className="nav-item">
          <Link className="nav-link" to="/">About</Link>
         </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/Business">business</Link>
-        </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/Entertainment">entertainment</Link>
-        </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/General">general</Link>
-        </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/Health">health</Link>
-        </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/Science">science</Link>
-        </li>
-        <li className="nav-item">
-         <Link className="nav-link" to="/Sports">sports</Link>
-        </li>  
-        <li className="nav-item">
-         <Link className="nav-link" to="/Technology">technology</Link>
-        </li>  
+        <li className="nav-item"><Link className="nav-link" to="/business">Business</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/entertainment">Entertainment</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/general">General</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/health">Health</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/science">Science</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/sports">Sports</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/technology">Technology</Link></li>
       </ul>
       <div className={`form-check form-switch text-${this.state.mode === 'dark' ? 'light' : 'dark'}`}>
       <input

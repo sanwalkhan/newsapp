@@ -26,7 +26,7 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
-    let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
+    let URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=1&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(URL);
     let parsedData = await data.json();
@@ -117,7 +117,7 @@ export default class News extends Component {
             disabled={this.state.page <= 1}
             type="btn"
             className="btn btn-dark "
-            onClick={this.handlyPreviousClick}
+            onClick={this.handlePreviousClick}
           >
             {" "}
             &larr; Previous
@@ -138,3 +138,15 @@ export default class News extends Component {
     );
   }
 }
+
+News.defaultProps = {
+  country: "in",
+  pageSize: 8,
+  category: "general",
+};
+
+News.propTypes = {
+  country: PropTypes.string,
+  pageSize: PropTypes.number,
+  category: PropTypes.string,
+};
