@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class News extends Component {
   static defaultProps = {
@@ -15,10 +16,9 @@ export default class News extends Component {
     category: PropTypes.string,
   };
 
-  capitalizefirsstletter = (string) =>{
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
+  capitalizefirsstletter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   constructor(props) {
     super(props);
@@ -28,7 +28,9 @@ export default class News extends Component {
       loading: false,
       page: 1,
     };
-    document.title = `News-World ${this.capitalizefirsstletter(this.props.category)}`;
+    document.title = `News-World ${this.capitalizefirsstletter(
+      this.props.category
+    )}`;
   }
 
   async updateNews() {
@@ -58,20 +60,34 @@ export default class News extends Component {
     this.updateNews();
   };
 
-  render() {
+   fetchMoreData = async () => {   
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    this.setPage(this.page+1) 
+    let data = await fetch(url);
+    let parsedData = await data.json()
+    this.setArticles(this.articles.concat(parsedData.articles))
+    this.setTotalResults(parsedData.totalResults)
+  };
 
-    
+
+  render() {
     return (
       <div className="container m-y3">
-      
         <h2
-          className={`text-center text-${this.props.mode === "dark" ? "white" : "dark"
-        }`}
-
+          className={`text-center text-${
+            this.props.mode === "dark" ? "white" : "dark"
+          }`}
           style={{ margin: "40px 0px" }}
         >
-          News-World {this.capitalizefirsstletter(this.props.category)} Headlines
+          News-World {this.capitalizefirsstletter(this.props.category)}{" "}
+          Headlines
         </h2>
+        <InfiniteScroll
+                    dataLength={ this.state.articles.length}
+                    next={this.fetchMoreData  }
+                    hasMore={this.state.articles.length !== this.state.totalResults}
+                    loader={<Spinner/>}
+                ></InfiniteScroll> 
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading &&
@@ -90,7 +106,7 @@ export default class News extends Component {
                     author={e.author}
                     date={e.publishedAt}
                     source={e.source.name}
-                    mode = {this.props.mode}
+                    mode={this.props.mode}
                   />
                 </div>
               );
@@ -114,7 +130,6 @@ export default class News extends Component {
               Math.ceil(this.state.totalResults / this.props.pageSize)
             }
             type="btn"
-            
             onClick={this.handleNextClick}
             className={`btn btn-sm btn-${
               this.props.mode === "light" ? "dark" : "light"
