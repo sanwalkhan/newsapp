@@ -14,6 +14,7 @@ export class NewsItem extends Component {
     console.log(this.props.mode);
     return (
       <div className="my-3">
+      
         <div className={`card bg-${this.props.mode}`}>
           <span
             className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
@@ -33,13 +34,13 @@ export class NewsItem extends Component {
             alt="..."
           />
           <div className="card-body">
-            <h6
+            <h5
               className={`card-title text-${
                 this.props.mode === "dark" ? "white" : "dark"
               }`}
             >
               {title}...
-            </h6>
+            </h5>
             <p
               className={`card-text text-${
                 this.props.mode === "dark" ? "white" : "dark"
@@ -59,8 +60,8 @@ export class NewsItem extends Component {
               rel="noopener noreferrer"
               target="_blank"
               className={`btn btn-sm btn-${
-                this.props.mode === "light" ? "white" : "dark"
-              } bg-${this.props.mode === "light" ? "white" : "white"}`}
+                this.props.mode === "light" ? "dark" : "light"
+              }`}
             >
               Read More
             </a>

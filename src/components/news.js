@@ -91,7 +91,6 @@ export default class News extends Component {
                     date={e.publishedAt}
                     source={e.source.name}
                     mode = {this.props.mode}
-
                   />
                 </div>
               );
@@ -101,7 +100,9 @@ export default class News extends Component {
           <button
             disabled={this.state.page <= 1}
             type="btn"
-            className="btn btn-dark "
+            className={`btn btn-sm btn-${
+              this.props.mode === "light" ? "dark" : "light"
+            }`}
             onClick={this.handlePreviousClick}
           >
             {" "}
@@ -113,8 +114,11 @@ export default class News extends Component {
               Math.ceil(this.state.totalResults / this.props.pageSize)
             }
             type="btn"
-            className="btn btn-dark"
+            
             onClick={this.handleNextClick}
+            className={`btn btn-sm btn-${
+              this.props.mode === "light" ? "dark" : "light"
+            }`}
           >
             Next : &rarr;
           </button>
