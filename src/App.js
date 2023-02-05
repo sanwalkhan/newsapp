@@ -1,14 +1,15 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./components/Navbar";
 import News from "./components/news";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
+  const Mode = useState("light");
   return (
     <div>
       <Router>
-        <NavBar />
+        <NavBar Mode={Mode} />
         <Routes>
           <Route
             path="/"
@@ -19,6 +20,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="general"
+                mode={Mode[0]}
               />
             }
           />
@@ -31,6 +33,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="business"
+                mode={Mode[0]}
               />
             }
           />
@@ -43,6 +46,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="entertainment"
+                mode={Mode[0]}
               />
             }
           />
@@ -55,6 +59,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="general"
+                mode={Mode[0]}
               />
             }
           />
@@ -67,6 +72,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="health"
+                mode={Mode[0]}
               />
             }
           />
@@ -79,6 +85,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="science"
+                mode={Mode[0]}
               />
             }
           />
@@ -91,6 +98,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="sports"
+                mode={Mode[0]}
               />
             }
           />
@@ -103,6 +111,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="technology"
+                mode={Mode[0]}
               />
             }
           />

@@ -15,14 +15,20 @@ export default class News extends Component {
     category: PropTypes.string,
   };
 
-  constructor() {
-    super();
+  capitalizefirsstletter = (string) =>{
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       articles: [],
       loading: false,
       page: 1,
     };
+    document.title = `News-World ${this.capitalizefirsstletter(this.props.category)}`;
   }
 
   async updateNews() {
@@ -52,16 +58,19 @@ export default class News extends Component {
     this.updateNews();
   };
 
-  render(props) {
+  render() {
+
+    
     return (
       <div className="container m-y3">
+      
         <h2
-          className={`text-center text-${
-            this.props.data === "dark" ? "white" : "dark"
-          }`}
+          className={`text-center text-${this.props.mode === "dark" ? "white" : "dark"
+        }`}
+
           style={{ margin: "40px 0px" }}
         >
-          News-World headlines
+          News-World {this.capitalizefirsstletter(this.props.category)} Headlines
         </h2>
         {this.state.loading && <Spinner />}
         <div className="row">
@@ -81,6 +90,8 @@ export default class News extends Component {
                     author={e.author}
                     date={e.publishedAt}
                     source={e.source.name}
+                    mode = {this.props.mode}
+
                   />
                 </div>
               );
