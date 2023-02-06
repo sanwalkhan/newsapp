@@ -3,9 +3,15 @@ import React, { useState } from "react";
 import NavBar from "./components/Navbar";
 import News from "./components/news";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import LoadingBar from "react-top-loading-bar";
+
+
 
 const App = () => {
   const Mode = useState("light");
+
+
+
   return (
     <div>
       <Router>
@@ -16,6 +22,7 @@ const App = () => {
             exact
             element={
               <News
+                 
                 key="general"
                 pageSize={12}
                 country="us"
@@ -29,6 +36,7 @@ const App = () => {
             path="/business"
             element={
               <News
+                 
                 key="business"
                 pageSize={12}
                 country="us"
@@ -42,6 +50,7 @@ const App = () => {
             path="/entertainment"
             element={
               <News
+                 
                 key="entertainment"
                 pageSize={12}
                 country="us"
@@ -55,6 +64,7 @@ const App = () => {
             path="/general"
             element={
               <News
+                 
                 key="general"
                 pageSize={12}
                 country="us"
@@ -68,6 +78,7 @@ const App = () => {
             path="/health"
             element={
               <News
+                 
                 key="health"
                 pageSize={12}
                 country="us"
@@ -81,6 +92,7 @@ const App = () => {
             path="/science"
             element={
               <News
+                 
                 key="science"
                 pageSize={12}
                 country="us"
@@ -94,6 +106,7 @@ const App = () => {
             path="/sports"
             element={
               <News
+                 
                 key="sports"
                 pageSize={12}
                 country="us"
@@ -107,6 +120,7 @@ const App = () => {
             path="/technology"
             element={
               <News
+                 
                 key="technology"
                 pageSize={12}
                 country="us"
