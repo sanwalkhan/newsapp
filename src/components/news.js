@@ -130,3 +130,5 @@ News.propTypes = {
   pageSize: PropTypes.number,
   category: PropTypes.string,
 };
+
+

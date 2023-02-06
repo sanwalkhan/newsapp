@@ -11,19 +11,19 @@ export default class Navbar extends Component {
   render() {
     const toggleMode = () => {
       if (this.props.Mode[0] === "light") {
-
-        this.props.Mode[1]("dark")
+        this.props.Mode[1]("dark");
 
         document.body.style.backgroundColor = "#042743";
       } else {
-
-        this.props.Mode[1]("light")
+        this.props.Mode[1]("light");
         document.body.style.backgroundColor = "white";
       }
     };
     return (
       <div>
-      <nav className={`navbar navbar-expand-lg navbar-${this.props.Mode[0]} bg-${this.props.Mode[0]}`}>
+        <nav
+          className={`navbar navbar-expand-lg navbar-${this.props.Mode[0]} bg-${this.props.Mode[0]}`}
+        >
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               News-World
@@ -90,7 +90,11 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
-              <div className={`form-check form-switch text-${this.props.Mode[0] === 'dark' ? 'light' : 'dark'}`}>
+              <div
+                className={`form-check form-switch text-${
+                  this.props.Mode[0] === "dark" ? "light" : "dark"
+                }`}
+              >
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -99,8 +103,11 @@ export default class Navbar extends Component {
                   id="flexSwitchCheckDefault"
                   onClick={toggleMode}
                 />
-                <label className="form-check-label " htmlFor="flexSwitchCheckDefault">
-                  Enable {this.props.Mode[0] === 'dark' ? 'Light' : 'Dark'} Mode
+                <label
+                  className="form-check-label "
+                  htmlFor="flexSwitchCheckDefault"
+                >
+                  Enable {this.props.Mode[0] === "dark" ? "Light" : "Dark"} Mode
                 </label>
               </div>
             </div>
