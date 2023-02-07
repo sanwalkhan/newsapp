@@ -34,12 +34,12 @@ const News = (props) => {
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} - News-World`;
     updateNews(); 
-    
+    // eslint-disable-next-line
 }, [])
 
  const fetchMoreData = async () => {
     
-    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${page}&pageSize=${props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&page=${page+1}&pageSize=${props.pageSize}`;
     setpage(page+1) 
         let data = await fetch(url);
         let parsedData = await data.json()
@@ -53,7 +53,7 @@ const News = (props) => {
         className={`text-center text-${
           props.mode === "dark" ? "white" : "dark"
         }`}
-        style={{ margin: "40px 0px" }}
+        style={{ margin: "40px 0px", marginTop: "90px"  }  }
       >
       News-World - Top {capitalizeFirstLetter(props.category)} Headlines</h2>
 
