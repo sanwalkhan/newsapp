@@ -16,15 +16,17 @@ const News = (props) => {
 
 
   const updateNews = async () => {
+    props.setProgress(10);
     let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=d8ab0b9c2f934b7b904f5e040ee795ff&&page=${page}&pageSize=${props.pageSize}`;
     setloading(true)
     let data = await fetch(url);
-    
+    props.setProgress(30);
     let parsedData = await data.json()
-    
+    props.setProgress(70);
     setarticles(parsedData.articles)
     settotalResults(parsedData.totalResults)
     setloading(false)
+    props.setProgress(100);
     
     
   };
@@ -68,8 +70,9 @@ const News = (props) => {
            
       <div className="row">
           {articles.map((e) => {
-              return <div className="col-md-4" key={e.imgURL}>
+              return <div className="col-md-4" key={e.url}>
               <NewsItem
+              key={e.url}
               newsURL={e.url}
               title={e ? e.title : "News-World"}
               description={

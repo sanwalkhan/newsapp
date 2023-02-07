@@ -1,26 +1,28 @@
 import "./App.css";
 import React, { useState } from "react";
 import NavBar from "./components/Navbar";
-import News from "./components/news";
+import News  from "./components/news";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
 
 const App = () => {
   const [Mode, setMode] = useState('light')
+  const [progress, setProgress] = useState(0)
   return (
     <div>
       <Router>
         <NavBar Mode={Mode} setMode={setMode} />
         <LoadingBar
+        height={3}
         color='#f11946'
-        progress={100}
+        progress={progress} 
       />
         <Routes>
           <Route
             path="/"
             exact
             element={
-              <News
+              <News setProgress={setProgress}
                 key="general"
                 pageSize={12}
                 country="us"
@@ -33,7 +35,7 @@ const App = () => {
             exact
             path="/business"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="business"
                 pageSize={12}
                 country="us"
@@ -46,7 +48,7 @@ const App = () => {
             exact
             path="/entertainment"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="entertainment"
                 pageSize={12}
                 country="us"
@@ -59,7 +61,7 @@ const App = () => {
             exact
             path="/general"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="general"
                 pageSize={12}
                 country="us"
@@ -72,7 +74,7 @@ const App = () => {
             exact
             path="/health"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="health"
                 pageSize={12}
                 country="us"
@@ -85,7 +87,7 @@ const App = () => {
             exact
             path="/science"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="science"
                 pageSize={12}
                 country="us"
@@ -98,7 +100,7 @@ const App = () => {
             exact
             path="/sports"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="sports"
                 pageSize={12}
                 country="us"
@@ -111,7 +113,7 @@ const App = () => {
             exact
             path="/technology"
             element={
-              <News
+              <News setProgress={setProgress}
                 key="technology"
                 pageSize={12}
                 country="us"
