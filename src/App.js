@@ -6,14 +6,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
 
 const App = () => {
-  const Mode = useState("light");
+  const [Mode, setMode] = useState('light')
   return (
     <div>
       <Router>
-        <NavBar Mode={Mode} />
+        <NavBar Mode={Mode} setMode={setMode} />
         <LoadingBar
         color='#f11946'
-        progress={10}
+        progress={100}
       />
         <Routes>
           <Route
@@ -25,7 +25,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="general"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -38,7 +38,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="business"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -51,7 +51,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="entertainment"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -64,7 +64,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="general"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -77,7 +77,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="health"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -90,7 +90,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="science"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -103,7 +103,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="sports"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />
@@ -116,7 +116,7 @@ const App = () => {
                 pageSize={12}
                 country="us"
                 category="technology"
-                mode={Mode[0]}
+                mode={Mode}
               />
             }
           />

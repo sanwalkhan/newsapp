@@ -1,28 +1,27 @@
 // import PropTypes from 'prop-types'
-import React, { Component } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 // import News from './news';
 
-export default class Navbar extends Component {
-  state = {
-    mode: "light",
-  };
+const Navbar =(props)=> {
 
-  render() {
+
+  
     const toggleMode = () => {
-      if (this.props.Mode[0] === "light") {
-        this.props.Mode[1]("dark");
+      if (props.Mode === "light") {
+        // this.props.Mode[1]("dark");
+        props.setMode('dark')
 
         document.body.style.backgroundColor = "#042743";
       } else {
-        this.props.Mode[1]("light");
+        props.setMode("light");
         document.body.style.backgroundColor = "white";
       }
     };
     return (
       <div>
         <nav
-          className={`navbar navbar-expand-lg navbar-${this.props.Mode[0]} bg-${this.props.Mode[0]}`}
+          className={`navbar navbar-expand-lg navbar-${props.Mode} bg-${props.Mode}`}
         >
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
@@ -92,7 +91,7 @@ export default class Navbar extends Component {
               </ul>
               <div
                 className={`form-check form-switch text-${
-                  this.props.Mode[0] === "dark" ? "light" : "dark"
+                  props.Mode === "dark" ? "light" : "dark"
                 }`}
               >
                 <input
@@ -107,7 +106,7 @@ export default class Navbar extends Component {
                   className="form-check-label "
                   htmlFor="flexSwitchCheckDefault"
                 >
-                  Enable {this.props.Mode[0] === "dark" ? "Light" : "Dark"} Mode
+                  Enable {props.Mode === "dark" ? "Light" : "Dark"} Mode
                 </label>
               </div>
             </div>
@@ -116,4 +115,5 @@ export default class Navbar extends Component {
       </div>
     );
   }
-}
+
+  export default Navbar;
