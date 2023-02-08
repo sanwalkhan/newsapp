@@ -4,8 +4,10 @@ import Spinner from "./Spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+
+
 const News = (props) => {
-  const [articles, setarticles] = useState([]);
+  const [articles, setarticles] = useState([ ]);
   const [loading, setloading] = useState(true);
   const [page, setpage] = useState(1);
   const [totalResults, settotalResults] = useState(0);
@@ -13,6 +15,7 @@ const News = (props) => {
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 } 
+
 
 
   const updateNews = async () => {
